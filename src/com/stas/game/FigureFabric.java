@@ -1,4 +1,4 @@
-package com.stas.igra;
+package com.stas.game;
 
 class FigureFabric {
 
@@ -44,8 +44,7 @@ class FigureFabric {
             {0, 0, 0}}
     };
 
-    static Figure createFigure(int x, int y)
-    {
+    static Figure createFigure(int x, int y) {
         int index = (int) (Math.random() * 10);
         return new Figure(x, y, SQRE[index]);
     }

@@ -1,32 +1,28 @@
-package com.stas.igra;
-
-
+package com.stas.game;
 import java.awt.event.KeyEvent;
-public class Main
-{
+
+public class Main {
+
 private Field field;
 private Figure figure;
-
 private boolean gameOver;
 
-private Main(int width, int height)
-        {
+private Main(int width, int height) {
+
         field = new Field(width, height);
         figure = null;
         }
 
-Field getField()
-        {
+Field getField() {
         return field;
         }
 
-Figure getFigure()
-        {
-        return figure;
+Figure getFigure() {
+
+            return figure;
         }
 
-private void run() throws Exception
-        {
+private void run() throws Exception {
 
         KeyboardListener keyboardListener = new KeyboardListener();
         keyboardListener.start();
@@ -35,11 +31,9 @@ private void run() throws Exception
 
         figure = FigureFabric.createFigure(field.getWidth() / 2, 0);
 
-        while (!gameOver)
-        {
+        while (!gameOver) {
 
-        if (keyboardListener.hasKeyEvents())
-        {
+        if (keyboardListener.hasKeyEvents()) {
 
         KeyEvent event = keyboardListener.getEventFromTop();
 
@@ -70,14 +64,12 @@ private void run() throws Exception
         System.out.println((char) 27 + "[31m GAME OVER!!! " + (char)27 + "[0m");
         }
 
- private void step()
-        {
+ private void step() {
         figure.down();
                System.out.println("YOUR SCORE IS : " +field.getScore());
 
 
-        if (!figure.chekPosition())
-        {
+        if (!figure.chekPosition()) {
         figure.up();
         figure.isLanded();
 

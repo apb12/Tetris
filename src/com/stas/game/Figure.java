@@ -1,7 +1,6 @@
-package com.stas.igra;
+package com.stas.game;
 
-class Figure
-{
+class Figure {
 
     private int[][] massive;
 
@@ -10,87 +9,66 @@ class Figure
 
 
 
-    Figure(int x, int y, int[][] massive)
-    {
+    Figure(int x, int y, int[][] massive) {
         this.x = x;
         this.y = y;
         this.massive = massive;
     }
 
-    int getX()
-    {
+    int getX() {
         return x;
     }
 
-    int getY()
-    {
+    int getY() {
         return y;
     }
 
-    int[][] getMassive()
-    {
+    int[][] getMassive() {
         return massive;
     }
 
-    void rotate()
-    {
+    void rotate() {
         int[][] massiveTemp = new int[3][3];
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 massiveTemp[i][j] = massive[j][i];
             }
-        }
-
-        massive = massiveTemp;
+        } massive = massiveTemp;
     }
 
-    void left()
-    {
+    void left() {
         x--;
         if (!chekPosition())
             x++;
     }
 
-    void right()
-    {
+    void right() {
         x++;
         if (!chekPosition())
             x--;
     }
 
-    void up()
-    {
+    void up() {
         y--;
     }
 
-    void down()
-    {
+    void down() {
         y++;
     }
 
-    void fastDown()
-    {
-        while (chekPosition())
-        {
+    void fastDown() {
+        while (chekPosition()) {
             y++;
-        }
-
-        y--;
+        }y--;
     }
 
-    boolean chekPosition()
-    {
+    boolean chekPosition() {
         Field field = Main.tetris.getField();
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                if (massive[i][j] == 1)
-                {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (massive[i][j] == 1) {
                     if (y + i >= field.getHeight())
                         return false;
 
@@ -99,20 +77,14 @@ class Figure
                         return false;
                 }
             }
-        }
-
-        return true;
+        } return true;
     }
 
-    void isLanded()
-
-    {
+    void isLanded() {
         Field field = Main.tetris.getField();
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 if (massive[i][j] == 1)
                     field.setValue(x + j, y + i, 1);
 

@@ -1,4 +1,4 @@
-package com.stas.igra;
+package com.stas.game;
 
 
 import javax.swing.*;
@@ -10,13 +10,11 @@ import java.awt.event.KeyListener;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
-     class KeyboardListener extends Thread
-    {
+     class KeyboardListener extends Thread {
         private Queue<KeyEvent> keyEvents = new ArrayBlockingQueue<>(100);
 
         @Override
-        public void run()
-        {
+        public void run() {
             JFrame frame = new JFrame("Tetris");
             frame.setTitle("Tetris");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,50 +27,40 @@ import java.util.concurrent.ArrayBlockingQueue;
             frame.setOpacity(0.0f);
             frame.setVisible(true);
 
-            frame.addFocusListener(new FocusListener()
-            {
+            frame.addFocusListener(new FocusListener() {
                 @Override
-                public void focusGained(FocusEvent e)
-                {
-
+                public void focusGained(FocusEvent e) {
                 }
 
                 @Override
-                public void focusLost(FocusEvent e)
-                {
+                public void focusLost(FocusEvent e) {
                     System.exit(0);
                 }
             });
 
 
-            frame.addKeyListener(new KeyListener()
-            {
+            frame.addKeyListener(new KeyListener() {
 
-                public void keyTyped(KeyEvent e)
-                {
-
+                public void keyTyped(KeyEvent e) {
                 }
 
-                public void keyReleased(KeyEvent e)
-                {
-
+                public void keyReleased(KeyEvent e) {
                 }
 
-                public void keyPressed(KeyEvent e)
-                {
+                public void keyPressed(KeyEvent e) {
                     keyEvents.add(e);
                 }
             });
         }
 
 
-         boolean hasKeyEvents()
-        {
+         boolean hasKeyEvents() {
+
             return !keyEvents.isEmpty();
         }
 
-         KeyEvent getEventFromTop()
-        {
+         KeyEvent getEventFromTop() {
+
             return keyEvents.poll();
         }
     }
